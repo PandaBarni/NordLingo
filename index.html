@@ -50,7 +50,8 @@ const grammar=["Begrüßungen hängen von Tageszeit und Situation ab. „Hej“ 
 const levelFor=n=>n<=75?'A1':n<=150?'A2':n<=225?'B1':'B2';
 const all=[];let id=1;
 units.forEach((unit,ui)=>unit.forEach((title,li)=>{
- const n=id++,lv=levelFor(n),bank=vocab[ui],focus=bank[li];
+ if(id>300) return;
+ const n=id++,lv=levelFor(n),bank=vocab[ui],focus=bank[li%bank.length];
  const words=[focus,bank[(li+1)%10],bank[(li+3)%10],bank[(li+6)%10]];
  const phrase=[`Jag vill lära mig mer om ${focus[0]}.`,`Ich möchte mehr über ${focus[1]} lernen.`];
  const dialog=[`A: Vad handlar dagens lektion om?<br>B: Den handlar om ${focus[0]}.<br>A: Intressant! Jag vill också lära mig mer.`,`A: Worum geht es in der heutigen Lektion?<br>B: Es geht um ${focus[1]}.<br>A: Interessant! Ich möchte auch mehr darüber lernen.`];
